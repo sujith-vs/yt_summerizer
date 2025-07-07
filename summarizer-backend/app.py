@@ -5,10 +5,13 @@ import requests
 from yt_dlp.utils import sanitize_filename
 from flask import Flask, request, jsonify
 from flask_cors import CORS
+from dotenv import load_dotenv
+import os
+
+load_dotenv()
 
 API_URL = "https://api-inference.huggingface.co/models/facebook/bart-large-cnn"
-headers = {"your_token_here"}
-
+headers = {"Authorization": f"Bearer {os.getenv('HF_TOKEN')}"}
 # Flask setup
 app = Flask(__name__)
 CORS(app)
